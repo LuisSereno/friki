@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Castillo
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-card>
+		<span *ngIf="esAdivinanza()">
+		  <ion-card-header >
+		    Adivinanza
+		  </ion-card-header>
+
+		  <ion-card-content>
+		  	<ion-item>
+		  		<ion-label>{{firstParam.pregunta}}</ion-label>
+			</ion-item>	
+			  <ion-item>
+			    <ion-label floating>Respuesta</ion-label>
+			    <ion-input type="text" (change)="respuestaCorrecta()"></ion-input>
+			  </ion-item>
+
+
+		  </ion-card-content>
+
+		</span>
+
+		<span *ngIf="!esAdivinanza()">
+		  <ion-card-header>
+		    Ambientación
+		  </ion-card-header>
+
+		  <ion-card-content>
+				{{firstParam}}
+		  </ion-card-content>
+		</span>
+
+	</ion-card>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-item>
+	<ion-row>
+		<ion-col>
+			<div *ngIf="datoNumber==VELOCIDAD">
+				<ion-icon name='trending-up' item-left class="color-iconos"></ion-icon>
+					Velocidad
+			</div>
+			<div *ngIf="datoNumber==ESQUIVAR">
+				<ion-icon name='shuffle' item-left class="color-iconos"></ion-icon>
+					Esquivar
+			</div>
+			<div *ngIf="datoNumber==DISTANCIA">
+				<ion-icon name='map' item-left class="color-iconos"></ion-icon>
+					Distancia
+			</div>
+			<div *ngIf="datoNumber==MANA">
+				<ion-icon name='color-wand' item-left class="color-iconos"></ion-icon>
+					Mana
+			</div>
+			<div *ngIf="datoNumber==RESISTENCIA">
+				<ion-icon name='lock' item-left class="color-iconos"></ion-icon>
+					Resistencia
+			</div>
+			<div *ngIf="datoNumber==ALMA">
+				<ion-icon name='heart' item-left class="color-iconos"></ion-icon>
+					Alma
+			</div>
+			<div *ngIf="datoNumber==SUERTE">
+				<ion-icon name='magnet' item-left class="color-iconos"></ion-icon>
+					Suerte
+			</div>
+			<div *ngIf="datoNumber==FUERZA">
+				<ion-icon name='body' item-left class="color-iconos"></ion-icon>
+					Fuerza
+			</div>
+			<div *ngIf="datoNumber==VIDA">
+				<ion-icon name='heart' item-left class="color-iconos"></ion-icon>
+					Vida
+			</div>
+			<div *ngIf="datoNumber==DEFENSA">
+				<ion-icon name='hand' item-left class="color-iconos"></ion-icon>
+					Defensa
+			</div>
+		</ion-col>
+		<ion-col>
+			<ion-icon *ngFor="let index of range" [name]="index < cantidad ? 'star' : 'star-outline'" class="color-estrella"></ion-icon>
+		</ion-col>
+	</ion-row>
+
+	
+</ion-item>

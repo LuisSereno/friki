@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ficha</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-card>
+
+    <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+
+    <ion-card-content>
+      <h2 class="card-title">
+        {{personajito.getNombre()}}
+      </h2>
+      <p>
+        {{personajito.getDescripcion()}}
+      </p>
+    </ion-card-content>
+
+    <skills [cantidad]=personajito.getVida() [tipo]=9></skills>
+    <skills [cantidad]=personajito.getFuerza() [tipo]=8></skills>
+    <skills [cantidad]=personajito.getDefensa() [tipo]=10></skills>
+    <!--<skills [cantidad]=personajito.getVelocidad() [tipo]="1"></skills>
+    <skills [cantidad]=personajito.getEsquivar() [tipo]=2></skills>
+    <skills [cantidad]=personajito.getDistancia() [tipo]=3></skills>
+    <skills [cantidad]=personajito.getMana() [tipo]=4></skills>
+    <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
+    <skills [cantidad]=personajito.getAlma() [tipo]=6></skills> -->
+    <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
+    <skills [cantidad]=personajito.getSuerte() [tipo]=7></skills>
+  </ion-card>
+</ion-content>
