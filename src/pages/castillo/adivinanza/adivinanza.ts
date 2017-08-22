@@ -4,6 +4,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { Historia } from '../../../servicios/beans/historia';
 import { Adivinanza } from '../../../servicios/beans/adivinanza';
 import { Juego } from '../../../servicios/juego';
+import { Accion } from '../../../servicios/beans/accion';
 
 @Component({
   selector: 'castillo-adivinanza',
@@ -11,7 +12,11 @@ import { Juego } from '../../../servicios/juego';
 })
 export class CastilloAdivinanza {
 
-  public firstParam:string|Adivinanza;
+  public firstParam:Accion;
+
+  public secondParam:boolean;
+
+  respuesta:string;
 
   from:string;
 
@@ -20,9 +25,16 @@ export class CastilloAdivinanza {
   mapping:{};
 
   constructor(public navCtrl: NavController,public navParams: NavParams, public juego:Juego) {
-    this.firstParam = navParams.get("paramText");
+    this.firstParam = this.navParams.get("paramAccion");
+    this.secondParam = this.navParams.get("paramText");
+  }
 
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad OtherPage');
+    if (this.secondParam){
+      this.firstParam.estado=true;
+    }
+    this.respuesta="";
     this.from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüûÑñÇç", 
     this.to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuunncc",
     this.mapping = {};
@@ -30,32 +42,23 @@ export class CastilloAdivinanza {
     for(var i = 0, j = this.from.length; i < j; i++ )
         this.mapping[ this.from.charAt( i ) ] = this.to.charAt( i );
 
-
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OtherPage');
-  }
+  protected respuestaCorrecta():void{
 
-  public esAdivinanza():boolean{
-    return (this.firstParam instanceof Adivinanza);
-  }
-
-  protected respuestaCorrecta(respuesta:string):boolean{
-
-    if (this.esAdivinanza()){
-      let respuestaTransformada=this.normalizar(respuesta.toUpperCase().replace(/[\s]/g, ''));
-      let solucionTransformada=this.normalizar((<Adivinanza>this.firstParam).respuesta.toUpperCase().replace(/[\s]/g, ''));
+    if (!this.secondParam){
+      let respuestaTransformada=this.normalizar(this.respuesta.toUpperCase().replace(/[\s]/g, ''));
+      let solucionTransformada=this.normalizar(this.firstParam.adivinanza.respuesta.toUpperCase().replace(/[\s]/g, ''));
 
       if (respuestaTransformada===solucionTransformada){
-        return true;
+        this.firstParam.estado=true;
+        this.navCtrl.pop();
       }else{
-        return false;
+        alert("LA RESPUESTA ES INCORRECTA");
       }
-      
-
     }else{
-      return false;
+      alert("LA RESPUESTA ES INCORRECTA");
+
     }
 
   }

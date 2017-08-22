@@ -41,8 +41,8 @@ export class Personaje {
 
 	constructor() {
 		this.id = 0;
-		this.nombre = "";
-		this.descripcion = "";
+		this.nombre = "Herodes";
+		this.descripcion = "Rey de reyes";
 		this.foto = "";
 		this.latitud = 0;
 		this.longitud = 0;

@@ -1,3 +1,15 @@
 page-about {
 
 }
+
+.correcto{
+	background-color: green;
+}
+
+.incorrecto{
+	background-color: red;
+}
+
+.disabled{
+	pointer-events:none;
+}

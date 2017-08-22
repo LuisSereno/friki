@@ -5,22 +5,32 @@
 </ion-header>
 
 <ion-content padding>
- <ion-card>
+ <ion-card *ngIf="esCombate">
+    <img src="assets/img/enemigo.png" class="tamanoreal"/>
+    <ion-card-content>
+      <h2 class="card-title">
+        {{enemigito.getNombre()}}
+      </h2>
+      <p>
+        {{enemigito.getDescripcion()}}
+      </p>
+    </ion-card-content>
+    <skills [cantidad]=enemigito.getVida() [tipo]=9></skills>
+  </ion-card>
 
+<ion-card>
     <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
-
     <ion-card-content>
       <h2 class="card-title">
         {{personajito.getNombre()}}
       </h2>
-      <p>
+      <p *ngIf="!esCombate">
         {{personajito.getDescripcion()}}
       </p>
     </ion-card-content>
-
     <skills [cantidad]=personajito.getVida() [tipo]=9></skills>
-    <skills [cantidad]=personajito.getFuerza() [tipo]=8></skills>
-    <skills [cantidad]=personajito.getDefensa() [tipo]=10></skills>
+    <skills [cantidad]=personajito.getFuerza() [tipo]=8 *ngIf="!esCombate"></skills>
+    <skills [cantidad]=personajito.getDefensa() [tipo]=10 *ngIf="!esCombate"></skills>
     <!--<skills [cantidad]=personajito.getVelocidad() [tipo]="1"></skills>
     <skills [cantidad]=personajito.getEsquivar() [tipo]=2></skills>
     <skills [cantidad]=personajito.getDistancia() [tipo]=3></skills>
@@ -28,6 +38,6 @@
     <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
     <skills [cantidad]=personajito.getAlma() [tipo]=6></skills> -->
     <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
-    <skills [cantidad]=personajito.getSuerte() [tipo]=7></skills>
+    <skills [cantidad]=personajito.getSuerte() [tipo]=7 *ngIf="!esCombate"></skills>
   </ion-card>
 </ion-content>

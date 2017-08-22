@@ -12,11 +12,12 @@
 	  <ion-list-header>
 	   <h2><b>Introducción</b></h2>
 	  </ion-list-header>
-	  <ion-item *ngFor="let accion of juego.getHistoria().getPresentacion()">
-	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion.url)">{{accion.url}}</a>
-	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion.texto)">Historia</p>
-	  	<p *ngIf="accion.tipo==3" (click)="pantallaHistoria(accion.adivinanza)">Adivinanza</p>
-	  	<p *ngIf="accion.tipo==4">Enemigo</p>
+	  <ion-item *ngFor="let accion of juego.getHistoria().getPresentacion()" 
+	  					[class.correcto]="accion.estado" [class.incorrecto]="!accion.estado">
+	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion);">{{accion.url}}</a>
+	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion,true)">Historia</p>
+	  	<p *ngIf="accion.tipo==3"  (click)="pantallaHistoria(accion,false)">Adivinanza</p>
+	  	<p *ngIf="accion.tipo==4" (click)="pantallaEnemigo(accion)">Enemigo</p>
 	  </ion-item>
 	</ion-list>
 
@@ -25,11 +26,12 @@
 	  <ion-list-header>
 	    <h2><b>Nudo</b></h2>
 	  </ion-list-header>
-	  <ion-item *ngFor="let accion of juego.getHistoria().getNudo()">
-	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion.url)">accion.url</a>
-	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion.texto)">Historia</p>
-	  	<p *ngIf="accion.tipo==3" (click)="pantallaHistoria(accion.adivinanza)">Adivinanza</p>
-	  	<p *ngIf="accion.tipo==4">Enemigo</p>
+	  <ion-item *ngFor="let accion of juego.getHistoria().getNudo()" [class.disabled]="!resolucionPresentacion"
+	  				[class.correcto]="accion.estado" [class.incorrecto]="!accion.estado">
+	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion)">accion.url</a>
+	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion,true)">Historia</p>
+	  	<p *ngIf="accion.tipo==3" (click)="pantallaHistoria(accion,false)">Adivinanza</p>
+	  	<p *ngIf="accion.tipo==4" (click)="pantallaEnemigo(accion)">Enemigo</p>
 	  </ion-item>
 	</ion-list>
 
@@ -38,11 +40,12 @@
 	  <ion-list-header>
 	    <h2><b>Desenlace</b></h2>
 	  </ion-list-header>
-	  <ion-item *ngFor="let accion of juego.getHistoria().getDesenlace()" disabled>
-	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion.url)">accion.url</a>
-	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion.texto)">Historia</p>
-	  	<p *ngIf="accion.tipo==3" (click)="pantallaHistoria(accion.adivinanza)">Adivinanza</p>
-	  	<p *ngIf="accion.tipo==4">Enemigo</p>
+	  <ion-item *ngFor="let accion of juego.getHistoria().getDesenlace()" [class.disabled]="!resolucionNudo"
+	  			[class.correcto]="accion.estado" [class.incorrecto]="!accion.estado">
+	  	<a *ngIf="accion.tipo==1" (click)="abrirURL(accion)">accion.url</a>
+	  	<p *ngIf="accion.tipo==2" (click)="pantallaHistoria(accion,true)">Historia</p>
+	  	<p *ngIf="accion.tipo==3" (click)="pantallaHistoria(accion,false)">Adivinanza</p>
+	  	<p *ngIf="accion.tipo==4" (click)="pantallaEnemigo(accion)">Enemigo</p>
 	  </ion-item>
 	</ion-list>
 
