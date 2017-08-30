@@ -22,6 +22,7 @@ export class Qr {
 
   	 this.juego.setHistoria(Historia.fromJSON(`{
 												"orden": 0,
+												"titulo": "la increible historia de sancho panza",
 												"presentacion": [{
 													"tipo": 1,
 													"url": "http://www.cysluisfelipesereno.es"

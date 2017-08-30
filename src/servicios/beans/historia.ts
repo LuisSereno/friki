@@ -4,6 +4,10 @@ export class Historia {
 
 	private orden:number;
 
+    private titulo:string;
+
+    private terminada:boolean;
+
 	private presentacion:Array<Accion>;
 
 	private nudo:Array<Accion>;
@@ -12,11 +16,28 @@ export class Historia {
 
 	constructor() {
 		this.orden=0;
+        this.titulo="";
 		this.presentacion=new Array<Accion>();
 		this.nudo=new Array<Accion>();
 		this.desenlace=new Array<Accion>();
-
+        this.terminada=false;
 	}
+
+    public getTitulo(): string {
+        return this.titulo;
+    }
+
+    public setTitulo(titu: string) {
+        this.titulo = titu;
+    }
+
+    public getTerminada(): boolean {
+        return this.terminada;
+    }
+
+    public setTerminada(final: boolean) {
+        this.terminada = final;
+    }
 
 	public getOrden(): number {
 		return this.orden;

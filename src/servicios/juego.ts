@@ -9,10 +9,13 @@ export class Juego{
 
 	private arrayHistoria: Array<Historia>;
 
+	private jugadorBloqueado:boolean;
+
 	constructor(){
 		this.jugador = new Personaje();
 		this.historia = new Historia();
 		this.arrayHistoria = new Array<Historia>();
+		this.jugadorBloqueado=false;
 	}
 
 	public setJugador(ata:Personaje){
@@ -21,6 +24,24 @@ export class Juego{
 
 	public getJugador():Personaje{
 		return this.jugador;
+	}
+
+	public setJugadorBloqueado(bloq:boolean){
+		this.jugadorBloqueado = bloq;
+	}
+
+	public getJugadorBloqueado():boolean{
+		return this.jugadorBloqueado;
+	}
+
+	public getNivelJugador():number{
+
+		let suma=this.getJugador().getAlma()+this.getJugador().getDefensa()+this.getJugador().getEsquivar()+
+					this.getJugador().getFuerza()+this.getJugador().getMana()+
+					this.getJugador().getResistencia()+this.getJugador().getSuerte()+
+					this.getJugador().getVelocidad()+this.getJugador().getVida();
+				
+		return suma;
 	}
 
 	public setHistoria(hist:Historia){
@@ -36,47 +57,4 @@ export class Juego{
 		return this.arrayHistoria;
 	}
 	
-
-/*	combate() {
-
-		try{
-			var diferenciaPuntos: number = 0;
-			var diferenciaNivel: number = 0;
-			var diferenciaDistancia: number = 0;
-			var diferenciaSuerte: number = 0;
-
-			this.puntosAta = this.atacante.ataquePrimario();
-			this.puntosDef=this.atacante.defensaNormal();
-
-			if (this.puntosAta>this.puntosDef){
-				diferenciaPuntos = this.puntosAta-this.puntosDef;
-			} else {
-				diferenciaPuntos = this.puntosDef-this.puntosAta;
-			}
-
-			this.experienciaCombate = diferenciaPuntos;
-		} catch (e) {
-			alert(e);
-		}
-	}
-
-	transformacion(){
-		try{
-
-			this.puntosAta=this.atacante.ataqueSecundario();
-			this.puntosDef=this.atacante.defensaConversion();
-
-			if (this .puntosAta>this.puntosDef){
-			
-			}else{
-			
-			}
-
-		}catch(e){
-			alert(e);
-		}
-	}
-
-	*/
-
 }

@@ -36,6 +36,8 @@ export class Personaje {
 
 	private suerte: number;
 
+	private ataque_especial: Array<number>;
+
 	private ultimo_combate: Date;
 
 
@@ -46,16 +48,17 @@ export class Personaje {
 		this.foto = "";
 		this.latitud = 0;
 		this.longitud = 0;
-		this.velocidad = 0;
-		this.esquivar = 0;
-		this.distancia = 0;
-		this.mana = 0;
-		this.resistencia = 0;
-		this.alma = 0;
-		this.fuerza = 0;
-		this.vida = 0;
-		this.suerte = 0;
-		this.defensa=0;
+		this.velocidad = 1;
+		this.esquivar = 1;
+		this.distancia = 1;
+		this.mana = 1;
+		this.resistencia = 1;
+		this.alma = 1;
+		this.fuerza = 1;
+		this.vida = 1;
+		this.suerte = 1;
+		this.defensa=1;
+		this.ataque_especial=new Array<number>();
 		this.ultimo_combate = new Date();
 	}
 
@@ -143,7 +146,7 @@ export class Personaje {
 		return this.resistencia;
 	}
 
-	public setResitencia(resistencia:number){
+	public setResistencia(resistencia:number){
 		this.resistencia = resistencia;
 	}
 
@@ -195,6 +198,13 @@ export class Personaje {
 		this.nivel = nivel;
 	}
 
+	public getAtaqueEspecial() : Array<number>{
+		return this.ataque_especial;
+	}
+
+	public setAtaqueEspecial(especial: Array<number>){
+		this.ataque_especial = especial;
+	}
 	public getExperiencia(): number{
 		return this.experiencia;
 	}

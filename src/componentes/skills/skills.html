@@ -43,7 +43,10 @@
 			</div>
 		</ion-col>
 		<ion-col>
-			<ion-icon *ngFor="let index of range" [name]="index < cantidad ? 'star' : 'star-outline'" class="color-estrella"></ion-icon>
+
+		<!--star-half -->
+			<ion-icon *ngFor="let index of range" [name]="index < cantidad ? 'star' : 'star-outline'" class="color-estrella"
+			(click)="seleccionarEstrella(index)"></ion-icon>
 		</ion-col>
 	</ion-row>
 

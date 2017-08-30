@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Historia
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<ion-list>
+	  <ion-list-header>
+	    <h2><b>Castillos Completados</b></h2>
+	  </ion-list-header>
+	  <ion-item *ngFor="let castillo of juego.getArrayHistoria()" [class.correcto]="castillo.getTerminada()" [class.incorrecto]="!castillo.getTerminada()">
+	  	<p (click)="pantallaHistoria(castillo)" >{{castillo.getOrden()}} - {{castillo.getTitulo()}}</p>
+	  </ion-item>
+	</ion-list>
+
+</ion-content>

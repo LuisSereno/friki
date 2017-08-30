@@ -6,3 +6,71 @@
 	width:100px;
 	margin: 0 auto;
 }
+
+.round-button {
+	width:25%;
+}
+.round-button-circle {
+	width: 20%;
+	height:0;
+	padding-bottom: 20%;
+    border-radius: 50%;
+	border:1px solid #cfdcec;
+    overflow:hidden;
+    
+    background: #4679BD; 
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle:hover {
+	background:#30588e;
+}
+.round-button a {
+    display:block;
+	float:left;
+	width:100%;
+	padding-top:50%;
+    padding-bottom:50%;
+	line-height:1em;
+	margin-top:-0.5em;
+    
+	text-align:center;
+	color:#e2eaf3;
+    font-family:Verdana;
+    font-size:1.2em;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.animated {
+ -webkit-animation-duration: 2s;
+ animation-duration: 2s;
+ -webkit-animation-fill-mode: both;
+ animation-fill-mode: both;
+}
+@-webkit-keyframes flash {
+ 0%, 50%, 100% {
+ opacity: 1;
+ }
+25%, 75% {
+ opacity: 0;
+ }
+}
+@keyframes flash {
+ 0%, 50%, 100% {
+ opacity: 1;
+ }
+25%, 75% {
+ opacity: 0;
+ }
+}
+.flash-golpe {
+ -webkit-animation-name: flash;
+ animation-name: flash;
+ background-color:red;
+}
+
+.flash-defensa {
+ -webkit-animation-name: flash;
+ animation-name: flash;
+ background-color:yellow;
+}

@@ -1,6 +1,5 @@
 import { Component,ViewChild  } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { FichaPersonaje } from '../../personaje/ficha_personaje';
 import { Juego } from '../../../servicios/juego';
 import { Accion } from '../../../servicios/beans/accion';
@@ -18,10 +17,13 @@ export class CastilloListado {
 
   resolucionNudo:boolean;
 
+  resolucionDesenlace:boolean;
+
 
   constructor(public navCtrl: NavController, public juego:Juego,private iab: InAppBrowser) {
     this.resolucionPresentacion=false;
     this.resolucionNudo=false;
+    this.resolucionDesenlace=false;
   }
 
   ngDoCheck(){
@@ -52,6 +54,15 @@ export class CastilloListado {
     todoCompleto = this.juego.getHistoria().getNudo().find(x => x.estado != true);
     if (!todoCompleto){
       this.resolucionNudo=true;
+    }
+
+    todoCompleto = this.juego.getHistoria().getDesenlace().find(x => x.estado != true);
+    if (!todoCompleto){
+      this.resolucionDesenlace=true;
+    }
+
+    if (this.resolucionDesenlace&&this.resolucionNudo&&this.resolucionPresentacion){
+      this.juego.getHistoria().setTerminada(true);
     }
   }
 

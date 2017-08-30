@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { Qr } from '../pages/qr/qr';
 import { Nfc } from '../pages/nfc/nfc';
 import { FichaPersonaje } from '../pages/personaje/ficha_personaje';
+import { HistoriaPantalla } from '../pages/historia/historia';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CastilloListado } from '../pages/castillo/listado/listado';
 import { CastilloAdivinanza } from '../pages/castillo/adivinanza/adivinanza';
@@ -27,7 +28,8 @@ import {Juego} from '../servicios/juego'
     TabsPage,
     Skills,
     CastilloListado,
-    CastilloAdivinanza
+    CastilloAdivinanza,
+    HistoriaPantalla
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {Juego} from '../servicios/juego'
     FichaPersonaje,
     TabsPage,
     CastilloListado,
-    CastilloAdivinanza
+    CastilloAdivinanza,
+    HistoriaPantalla
   ],
   providers: [
     StatusBar,

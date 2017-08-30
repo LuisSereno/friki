@@ -1,11 +1,14 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Ficha</ion-title>
+     <ion-buttons right *ngIf="esEdicion">
+      <button ion-button icon-only (click)="bloquearUsuario()"><ion-icon [name]="esEdicion_icono" style="zoom:2.0;" ></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
- <ion-card *ngIf="esCombate">
+ <ion-card *ngIf="esCombate" [class]="flash_golpe_enemigo">
     <img src="assets/img/enemigo.png" class="tamanoreal"/>
     <ion-card-content>
       <h2 class="card-title">
@@ -16,10 +19,58 @@
       </p>
     </ion-card-content>
     <skills [cantidad]=enemigito.getVida() [tipo]=9></skills>
+    <skills [cantidad]=enemigito.getResistencia() [tipo]=5></skills>
   </ion-card>
 
-<ion-card>
+  <ion-card *ngIf="esEdicion">
+    <ion-card-content>
     <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+      <ion-list>
+        <ion-item>
+          <ion-input [disabled]="juego.getJugadorBloqueado()" placeholder="Nombre" clearInput [ngModel]="personajito.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-textarea [disabled]="juego.getJugadorBloqueado()" placeholder="Descripcion" [ngModel]="personajito.descripcion"></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <skills [cantidad]=personajito.vida [tipo]=9></skills>
+    <skills [cantidad]=personajito.fuerza [tipo]=8 *ngIf="!esCombate"></skills>
+    <skills [cantidad]=personajito.defensa [tipo]=10 *ngIf="!esCombate"></skills>
+    <skills [cantidad]=personajito.resistencia [tipo]=5></skills>
+    <skills [cantidad]=personajito.suerte [tipo]=7 *ngIf="!esCombate"></skills>
+
+    <ion-item>
+      <ion-label>Ataque Especial (2 turnos para ejecutarse)</ion-label>
+      <ion-select [(ngModel)]="ataqueEspecial">
+        <ion-option value="0">Piel de acero (+2 Defensa)</ion-option>
+        <ion-option value="1">Fuerza animal (+2 Fuerza)</ion-option>
+        <ion-option value="2">Meditación (+1 vida)</ion-option>
+        <ion-option value="3">Absorbe energía (+1 resistencia)</ion-option>
+        <ion-option value="4">Moneda al aire (+4 suerte)</ion-option>
+        <ion-option value="5">Golpe trueno (Ataque x3)</ion-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-card>
+
+<ion-card *ngIf="!esEdicion" [class]="flash_golpe_amigo">
+
+    <img *ngIf="!esCombate" src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+
+    <ion-grid *ngIf="esCombate">
+      <ion-row>
+      <ion-col col-4>
+            <button ion-button small class="round-button-circle" (click)="ataquePrimario()" [disabled]="deshabilitarAtaquePrimario"><ion-icon name="hand" style="zoom:4.0;margin-top: 60%;padding-top: 80%;"></ion-icon></button>
+      </ion-col>
+      <ion-col col-4>
+        <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+      </ion-col>
+      <ion-col col-4 *ngIf="personajito.getAtaqueEspecial().length>0">
+            <button ion-button small class="round-button-circle" item-right (click)="ataqueSecundario(true,personajito.getAtaqueEspecial()[0])" [disabled]="deshabilitarAtaqueSecundario" float-right><ion-icon name="bonfire" style="zoom:4.0;margin-top: 60%;padding-top: 80%;"></ion-icon></button>
+      </ion-col>
+      </ion-row>
+    </ion-grid>
     <ion-card-content>
       <h2 class="card-title">
         {{personajito.getNombre()}}
@@ -31,13 +82,20 @@
     <skills [cantidad]=personajito.getVida() [tipo]=9></skills>
     <skills [cantidad]=personajito.getFuerza() [tipo]=8 *ngIf="!esCombate"></skills>
     <skills [cantidad]=personajito.getDefensa() [tipo]=10 *ngIf="!esCombate"></skills>
-    <!--<skills [cantidad]=personajito.getVelocidad() [tipo]="1"></skills>
-    <skills [cantidad]=personajito.getEsquivar() [tipo]=2></skills>
-    <skills [cantidad]=personajito.getDistancia() [tipo]=3></skills>
-    <skills [cantidad]=personajito.getMana() [tipo]=4></skills>
-    <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
-    <skills [cantidad]=personajito.getAlma() [tipo]=6></skills> -->
     <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
     <skills [cantidad]=personajito.getSuerte() [tipo]=7 *ngIf="!esCombate"></skills>
+
+    <ion-item disabled="true">
+      <ion-label>Ataque Especial (2 turnos para ejecutarse)</ion-label>
+      <ion-select [(ngModel)]="ataqueEspecial">
+        <ion-option value="0">Piel de acero (+2 Defensa)</ion-option>
+        <ion-option value="0">Fuerza animal (+2 Fuerza)</ion-option>
+        <ion-option value="1">Doble daño (Golpe x2)</ion-option>
+        <ion-option value="2">Meditación (+1 vida)</ion-option>
+        <ion-option value="3">Absorbe energía (+1 resistencia)</ion-option>
+        <ion-option value="4">Moneda al aire (+4/0 suerte)</ion-option>
+      </ion-select>
+    </ion-item>
+
   </ion-card>
 </ion-content>
