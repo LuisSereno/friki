@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { NativeStorage  } from '@ionic-native/native-storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -18,6 +19,8 @@ import { NFC,Ndef } from '@ionic-native/nfc';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import {Skills} from '../componentes/skills/skills'
 import {Juego} from '../servicios/juego'
+import {AlmacenamientoDatos} from '../servicios/almacenamientoDatos'
+import { Vibration } from '@ionic-native/vibration';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,9 @@ import {Juego} from '../servicios/juego'
     NFC,
     Ndef,
     Juego,
+    NativeStorage,
+    Vibration,
+    AlmacenamientoDatos,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -6,6 +6,20 @@
 $font-path: "../assets/fonts";
 
 
+@font-face {
+  font-family: 'AGothiqueTime';
+  src: url('../assets/fonts/AGothiqueTime.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gothical';
+  src: url('../assets/fonts/Gothical.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
@@ -86,3 +100,14 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+
+p,h1,h2,h3,span.textoEspecial,ion-label,.select-text,.alert-radio-label,.text-input,ion-card-header,.tab-button-text{
+  font-family: 'AGothiqueTime';
+  font-size: 2em;
+  letter-spacing: 0.1em;
+}
+
+.alert-radio-label,a{
+  font-size: 1em;
+}

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Ficha</ion-title>
+    <ion-title><span class="textoEspecial">Ficha</span>  <ion-icon name="clock" *ngIf="juego.getTiempoTotal()>0">{{juego.getTiempoTotal()}}</ion-icon></ion-title>
      <ion-buttons right *ngIf="esEdicion">
       <button ion-button icon-only (click)="bloquearUsuario()"><ion-icon [name]="esEdicion_icono" style="zoom:2.0;" ></ion-icon></button>
     </ion-buttons>
@@ -43,35 +43,36 @@
     <ion-item>
       <ion-label>Ataque Especial (2 turnos para ejecutarse)</ion-label>
       <ion-select [(ngModel)]="ataqueEspecial">
-        <ion-option value="0">Piel de acero (+2 Defensa)</ion-option>
-        <ion-option value="1">Fuerza animal (+2 Fuerza)</ion-option>
-        <ion-option value="2">Meditación (+1 vida)</ion-option>
-        <ion-option value="3">Absorbe energía (+1 resistencia)</ion-option>
-        <ion-option value="4">Moneda al aire (+4 suerte)</ion-option>
-        <ion-option value="5">Golpe trueno (Ataque x3)</ion-option>
+        <ion-option value="0"><span class="textoEspecial">Piel de acero (+2 Defensa)</span></ion-option>
+        <ion-option value="1"><span class="textoEspecial">Fuerza animal (+2 Fuerza)</span></ion-option>
+        <ion-option value="2"><span class="textoEspecial">Meditación (+1 vida)</span></ion-option>
+        <ion-option value="3"><span class="textoEspecial">Absorbe energía (+1 resistencia)</span></ion-option>
+        <ion-option value="4"><span class="textoEspecial">Moneda al aire (+4 suerte)</span></ion-option>
+        <ion-option value="5"><span class="textoEspecial">Golpe trueno (Ataque x3)</span></ion-option>
       </ion-select>
     </ion-item>
 
   </ion-card>
 
 <ion-card *ngIf="!esEdicion" [class]="flash_golpe_amigo">
-
-    <img *ngIf="!esCombate" src="assets/img/detectiveExtra.png" class="tamanoreal"/>
-
-    <ion-grid *ngIf="esCombate">
-      <ion-row>
-      <ion-col col-4>
-            <button ion-button small class="round-button-circle" (click)="ataquePrimario()" [disabled]="deshabilitarAtaquePrimario"><ion-icon name="hand" style="zoom:4.0;margin-top: 60%;padding-top: 80%;"></ion-icon></button>
-      </ion-col>
-      <ion-col col-4>
-        <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
-      </ion-col>
-      <ion-col col-4 *ngIf="personajito.getAtaqueEspecial().length>0">
-            <button ion-button small class="round-button-circle" item-right (click)="ataqueSecundario(true,personajito.getAtaqueEspecial()[0])" [disabled]="deshabilitarAtaqueSecundario" float-right><ion-icon name="bonfire" style="zoom:4.0;margin-top: 60%;padding-top: 80%;"></ion-icon></button>
-      </ion-col>
-      </ion-row>
-    </ion-grid>
     <ion-card-content>
+
+      <img *ngIf="!esCombate" src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+
+      <ion-grid *ngIf="esCombate">
+        <ion-row>
+        <ion-col col-4>
+              <button ion-button small class="round-button-circle" (click)="ataquePrimario()" [disabled]="deshabilitarAtaquePrimario"><ion-icon name="hand" style="zoom:2.0;margin-top:2em;"></ion-icon></button>
+        </ion-col>
+        <ion-col col-4>
+          <img src="assets/img/detectiveExtra.png" class="tamanoreal"/>
+        </ion-col>
+        <ion-col col-4 *ngIf="personajito.getAtaqueEspecial().length>0">
+              <button ion-button small class="round-button-circle" item-right (click)="ataqueSecundario(true,personajito.getAtaqueEspecial()[0])" [disabled]="deshabilitarAtaqueSecundario" float-right><ion-icon name="bonfire" style="zoom:2.0;margin-top:2em;"></ion-icon></button>
+        </ion-col>
+        </ion-row>
+      </ion-grid>
+
       <h2 class="card-title">
         {{personajito.getNombre()}}
       </h2>
@@ -85,15 +86,15 @@
     <skills [cantidad]=personajito.getResistencia() [tipo]=5></skills>
     <skills [cantidad]=personajito.getSuerte() [tipo]=7 *ngIf="!esCombate"></skills>
 
-    <ion-item disabled="true">
+    <ion-item *ngIf="!esCombate">
       <ion-label>Ataque Especial (2 turnos para ejecutarse)</ion-label>
-      <ion-select [(ngModel)]="ataqueEspecial">
-        <ion-option value="0">Piel de acero (+2 Defensa)</ion-option>
-        <ion-option value="0">Fuerza animal (+2 Fuerza)</ion-option>
-        <ion-option value="1">Doble daño (Golpe x2)</ion-option>
-        <ion-option value="2">Meditación (+1 vida)</ion-option>
-        <ion-option value="3">Absorbe energía (+1 resistencia)</ion-option>
-        <ion-option value="4">Moneda al aire (+4/0 suerte)</ion-option>
+      <ion-select [(ngModel)]="ataqueEspecial"  disabled=true>
+        <ion-option value="0"><span class="textoEspecial">Piel de acero (+2 Defensa)</span></ion-option>
+        <ion-option value="1"><span class="textoEspecial">Fuerza animal (+2 Fuerza)</span></ion-option>
+        <ion-option value="2"><span class="textoEspecial">Meditación (+1 vida)</span></ion-option>
+        <ion-option value="3"><span class="textoEspecial">Absorbe energía (+1 resistencia)</span></ion-option>
+        <ion-option value="4"><span class="textoEspecial">Moneda al aire (+4 suerte)</span></ion-option>
+        <ion-option value="5"><span class="textoEspecial">Golpe trueno (Ataque x3)</span></ion-option>
       </ion-select>
     </ion-item>
 

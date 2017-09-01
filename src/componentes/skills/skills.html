@@ -1,49 +1,50 @@
 <ion-item>
-	<ion-row>
+	<ion-row text-center>
 		<ion-col>
 			<div *ngIf="datoNumber==VELOCIDAD">
 				<ion-icon name='trending-up' item-left class="color-iconos"></ion-icon>
-					Velocidad
+					<span class="textoEspecial">Velocidad</span>
 			</div>
 			<div *ngIf="datoNumber==ESQUIVAR">
 				<ion-icon name='shuffle' item-left class="color-iconos"></ion-icon>
-					Esquivar
+					<span class="textoEspecial">Esquivar</span>
 			</div>
 			<div *ngIf="datoNumber==DISTANCIA">
 				<ion-icon name='map' item-left class="color-iconos"></ion-icon>
-					Distancia
+					<span class="textoEspecial">Distancia</span>
 			</div>
 			<div *ngIf="datoNumber==MANA">
 				<ion-icon name='color-wand' item-left class="color-iconos"></ion-icon>
-					Mana
+					<span class="textoEspecial">Mana</span>
 			</div>
 			<div *ngIf="datoNumber==RESISTENCIA">
 				<ion-icon name='lock' item-left class="color-iconos"></ion-icon>
-					Resistencia
+					<span class="textoEspecial">Resistencia</span>
 			</div>
 			<div *ngIf="datoNumber==ALMA">
 				<ion-icon name='heart' item-left class="color-iconos"></ion-icon>
-					Alma
+					<span class="textoEspecial">Alma</span>
 			</div>
 			<div *ngIf="datoNumber==SUERTE">
 				<ion-icon name='magnet' item-left class="color-iconos"></ion-icon>
-					Suerte
+					<span class="textoEspecial">Suerte</span>
 			</div>
 			<div *ngIf="datoNumber==FUERZA">
 				<ion-icon name='body' item-left class="color-iconos"></ion-icon>
-					Fuerza
+					<span class="textoEspecial">Fuerza</span>
 			</div>
 			<div *ngIf="datoNumber==VIDA">
 				<ion-icon name='heart' item-left class="color-iconos"></ion-icon>
-					Vida
+					<span class="textoEspecial">Vida</span>
 			</div>
 			<div *ngIf="datoNumber==DEFENSA">
 				<ion-icon name='hand' item-left class="color-iconos"></ion-icon>
-					Defensa
+					<span class="textoEspecial">Defensa</span>
 			</div>
 		</ion-col>
+	</ion-row>
+	<ion-row text-center>
 		<ion-col>
-
 		<!--star-half -->
 			<ion-icon *ngFor="let index of range" [name]="index < cantidad ? 'star' : 'star-outline'" class="color-estrella"
 			(click)="seleccionarEstrella(index)"></ion-icon>

@@ -41,12 +41,18 @@ export class FichaPersonaje {
 	turnoSecundario:number;
 
 	constructor(public navCtrl: NavController,public navParams: NavParams, public juego:Juego) {
-		this.personajito=this.juego.getJugador();
-		this.firstParam = navParams.get("paramAccion");
+		console.log("VA A CARGAR EL PERSONAJE");
+		this.personajito=new Personaje();
+		console.log(this.personajito);
+		this.firstParam=new Accion();
 	}
 
-	ionViewDidLoad() {
+	ionViewWillEnter() {
+		this.personajito=this.juego.getJugador();
+		this.firstParam = this.navParams.get("paramAccion");
 		this.esEdicion=!this.juego.getJugadorBloqueado();
+		console.log("el jugador es bloqueado");
+		console.log(this.esEdicion);
 		if(this.esEdicion){
 			this.esEdicion_icono="unlock";
 		}else{
@@ -70,12 +76,18 @@ export class FichaPersonaje {
 
 
 	protected bloquearUsuario(){
-		this.esEdicion_icono="lock";
-		this.juego.setJugadorBloqueado(true);
-		let arrayAtaques=new Array<number>();
-		arrayAtaques.push( +this.ataqueEspecial);
-		this.personajito.setAtaqueEspecial(arrayAtaques);
-		this.juego.setJugador(this.personajito);
+
+		if (this.juego.getNivelFinal()!=0){
+			this.esEdicion=false;
+			this.esEdicion_icono="lock";
+			this.juego.setJugadorBloqueado(true);
+			let arrayAtaques=new Array<number>();
+			arrayAtaques.push( +this.ataqueEspecial);
+			this.personajito.setAtaqueEspecial(arrayAtaques);
+			this.juego.setJugador(this.personajito);
+		}else{
+			alert("Configura los parametros del juego");
+		}
 	}
 
 	protected ataquePrimario(){

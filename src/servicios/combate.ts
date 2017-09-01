@@ -1,6 +1,8 @@
 import {Personaje} from './beans/personaje';
 import {Constantes} from './constantes';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class Combate{
 
 	private static defensaBasica(personaje:Personaje):number{

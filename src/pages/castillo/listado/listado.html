@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Castillo
+      <span class="textoEspecial">Castillo</span> <ion-icon name="clock" *ngIf="juego.getTiempoTotal()>0">{{juego.getTiempoTotal()}}</ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>

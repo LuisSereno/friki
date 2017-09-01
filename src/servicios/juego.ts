@@ -1,6 +1,9 @@
+import {Injectable, Inject} from '@angular/core';
 import {Personaje} from './beans/personaje';
 import {Historia} from './beans/historia';
+import {AlmacenamientoDatos} from './almacenamientoDatos';
 
+@Injectable()
 export class Juego{
 
 	private jugador: Personaje;
@@ -11,11 +14,55 @@ export class Juego{
 
 	private jugadorBloqueado:boolean;
 
-	constructor(){
+	private nivelFinal:number;
+
+	private fechaInicio:Date;
+
+	private tiempoTotal:number;
+
+	private titulo:string;
+
+	constructor(private bbdd:AlmacenamientoDatos){
 		this.jugador = new Personaje();
 		this.historia = new Historia();
 		this.arrayHistoria = new Array<Historia>();
 		this.jugadorBloqueado=false;
+		this.nivelFinal=0;
+		this.fechaInicio=new Date();
+		this.tiempoTotal=0;
+		this.titulo="";
+	}
+
+	public setTitulo(titu:string){
+		this.titulo = titu;
+	}
+
+	public getTitulo():string{
+		return this.titulo;
+	}
+
+	public setNivelFinal(nivel:number){
+		this.nivelFinal = nivel;
+	}
+
+	public getNivelFinal():number{
+		return this.nivelFinal;
+	}
+
+	public setFechaInicio(fecha:Date){
+		this.fechaInicio = fecha;
+	}
+
+	public getFechaInicio():Date{
+		return this.fechaInicio;
+	}
+
+	public setTiempoTotal(tiempo:number){
+		this.tiempoTotal = tiempo;
+	}
+
+	public getTiempoTotal():number{
+		return this.tiempoTotal;
 	}
 
 	public setJugador(ata:Personaje){
@@ -46,7 +93,10 @@ export class Juego{
 
 	public setHistoria(hist:Historia){
 		this.historia = hist;
-		this.arrayHistoria.push(hist);
+		var valorhist=this.arrayHistoria.find(x=>x==hist);
+		if (!valorhist){
+			this.arrayHistoria.push(hist);
+		}
 	}
 
 	public getHistoria():Historia{
@@ -57,4 +107,45 @@ export class Juego{
 		return this.arrayHistoria;
 	}
 	
+	public guardarJuego(){
+		this.bbdd.guardar("historias",JSON.parse(JSON.stringify(this.arrayHistoria)));
+		this.bbdd.guardar("jugadorPrincipal",<JSON>this.jugador.toJSON());
+		this.bbdd.guardar("bloqueado",JSON.parse(JSON.stringify(this.jugadorBloqueado)));
+	}
+
+	public cargarJuego(){
+
+		this.bbdd.extraer("historias").then(
+		    datos => {
+		    	for (let indice in datos){
+		    		this.setHistoria(Historia.fromJSON(datos[indice]));
+		    	}
+		    },
+		    error => console.error('Error storing item', error)
+		  );
+
+		this.bbdd.extraer("jugadorPrincipal").then(
+		    datos => {
+		    	this.setJugador(Personaje.fromJSON(datos));
+		    },
+		    error => console.error('Error storing item', error)
+		  );
+
+		this.bbdd.extraer("bloqueado").then(
+		    datos => {
+		    	this.setJugadorBloqueado(<boolean>datos)
+		    },
+		    error => console.error('Error storing item', error)
+		  );
+	}
+
+	public configurarJuego(configuracion:JSON){
+		this.titulo=configuracion["titulo"];
+		this.nivelFinal=configuracion["nivelFinal"];
+		if (this.titulo!="" && this.nivelFinal>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

@@ -1,7 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+	    <span class="textoEspecial">Cruzar puerta</span><ion-icon name="clock" *ngIf="juego.getTiempoTotal()>0">{{juego.getTiempoTotal()}}</ion-icon>
+
+	    <ion-buttons right *ngIf="!this.juego.getJugadorBloqueado()">
+	      <button ion-button icon-only (click)="bloquearUsuario()"><ion-icon [name]="esEdicion_icono" style="zoom:2.0;" ></ion-icon></button>
+	    </ion-buttons>
+
     </ion-title>
   </ion-navbar>
 </ion-header>
